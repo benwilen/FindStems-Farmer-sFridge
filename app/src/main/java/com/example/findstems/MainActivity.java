@@ -32,5 +32,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
+
+        //set text of tabs
+        tabs.getTabAt(0).setText("Enter Word");
+        tabs.getTabAt(1).setText("See Stem History");
     }
 }
