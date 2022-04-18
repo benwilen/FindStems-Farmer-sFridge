@@ -1,12 +1,11 @@
 package com.example.findstems;
-
 import java.util.*;
 
 public class Word {
 
     public static Set<String> getStems(String original) {
 
-        Set<String> allStems = new HashSet<String>();
+        Set<String> allStems = new HashSet<>();
 
         allStems.add(original);
 
@@ -21,7 +20,7 @@ public class Word {
                 String lastTwoChar = original.substring(original.length() - 2, original.length());
 
                 if (lastTwoChar.equals("LZ") || lastTwoChar.equals("ZQ")) {
-                    allStems.addAll(getStems(original.substring(0, original.length() - 3)));
+                    allStems.addAll(getStems(original.substring(0, original.length() - 2)));
                     return allStems;
                 }
 
@@ -46,6 +45,10 @@ public class Word {
         }
 
         return allStems;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getStems("Hello"));
     }
 
 }
