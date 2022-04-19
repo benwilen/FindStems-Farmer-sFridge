@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textTab1Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textSize="25sp"
+        android:text="Enter words" />
+
+    <Button
+        android:id="@+id/btnEnterWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Enter" />
+
+    <TextView
+        android:id="@+id/printStems"
+        android:layout_width="308dp"
+        android:layout_height="290dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="420dp"
+        android:text=""
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/editTextInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:ems="100"
+        android:inputType="textLongMessage"
+        android:text="" />
+
+</RelativeLayout>
