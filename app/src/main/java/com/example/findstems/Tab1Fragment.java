@@ -37,12 +37,18 @@ public class Tab1Fragment extends Fragment {
                 //get text from input
                 String input = editTextInput.getText().toString();
 
+
                 //convert string to list of all words entered
                String[] allWords = input.split(" ");
 
                StringBuilder sb = new StringBuilder();
                for (int i = 0 ; i < allWords.length ; i++) {
-                   String[] stems = Word.getStems(allWords[i]).toArray(new String[0]);
+                   String curr = allWords[i];
+
+                   //get stems of word
+                   //word does not include any non-alphabetical characters
+                   String[] stems = Word.getStems(curr.replaceAll("[^A-Za-z]+", "")).toArray(new String[0]);
+
                    sb.append(allWords[i] + ": ");
 
                    for (int j = 0 ; j < stems.length - 1 ; j++) {
