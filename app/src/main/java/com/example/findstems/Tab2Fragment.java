@@ -1,5 +1,6 @@
 package com.example.findstems;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,6 @@ public class Tab2Fragment extends Fragment {
 
     public Map<String, Integer> history;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class Tab2Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 history.clear();
+                printHistory.setText("");
             }
         });
 
@@ -58,6 +59,18 @@ public class Tab2Fragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void updateHistory(List<String> data) {
+        for (int i = 0 ; i < data.size() ; i++) {
+            String curr = data.get(i);
+            if (history.containsKey(curr)) {
+                history.put(curr, history.get(curr) + 1);
+            }
+            else {
+                history.put(curr, 1);
+            }
+        }
     }
 
 }

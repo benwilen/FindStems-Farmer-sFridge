@@ -15,14 +15,18 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.findstems.*;
+import java.util.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Tab1Fragment.Fragment1Listener {
 
     private static final String TAG = "MainActivity";
 
     private SectionsPageAdapter mSectionsPageAdapter;
 
     private ViewPager mViewPager;
+
+    private Tab1Fragment fragment1;
+    private Tab2Fragment fragment2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +42,23 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment(), "Enter Words");
-        adapter.addFragment(new Tab2Fragment(), "See Stem History");
+
+        fragment1 = new Tab1Fragment();
+        fragment2 = new Tab2Fragment();
+
+        adapter.addFragment(fragment1, "Enter Words");
+        adapter.addFragment(fragment2, "See Stem History");
         viewPager.setAdapter(adapter);
     }
+
+    @Override
+    public void onInput1Sent(List<String> data) {
+        fragment2.updateHistory(data);
+    }
+
 }

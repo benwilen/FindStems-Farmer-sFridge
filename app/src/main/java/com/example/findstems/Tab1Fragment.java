@@ -1,5 +1,6 @@
 package com.example.findstems;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,14 @@ import java.util.*;
 public class Tab1Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
 
+    private Fragment1Listener listener;
     private Button btnEnterWord;
     private EditText editTextInput;
     private TextView printStems;
 
+    public interface Fragment1Listener {
+        void onInput1Sent(List<String> data);
+    }
 
     @Nullable
     @Override
@@ -33,6 +38,8 @@ public class Tab1Fragment extends Fragment {
         btnEnterWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                List<String> stemsToBeSent = new ArrayList<>();
 
                 //get text from input
                 String input = editTextInput.getText().toString();
@@ -53,16 +60,39 @@ public class Tab1Fragment extends Fragment {
 
                    for (int j = 0 ; j < stems.length - 1 ; j++) {
                        sb.append(stems[j] + ", ");
+                       stemsToBeSent.add(stems[j]);
                    }
                    sb.append(stems[stems.length - 1]);
+                   stemsToBeSent.add(stems[stems.length - 1]);
 
                    sb.append("\n");
                 }
 
                printStems.setText(sb.toString());
+
+               //send stems to fragment 2
+                listener.onInput1Sent(stemsToBeSent);
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Fragment1Listener) {
+            listener = (Fragment1Listener) context;
+        }
+        else {
+            throw new RuntimeException(context.toString() +
+                    " must implement Fragment1Listener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
     }
 }
