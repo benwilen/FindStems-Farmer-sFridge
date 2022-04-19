@@ -26,7 +26,7 @@ public class Tab2Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab1_fragment,container,false);
+        View view = inflater.inflate(R.layout.tab2_fragment,container,false);
         btnClear = (Button) view.findViewById(R.id.btnClear);
         btnGetHistory = (Button) view.findViewById(R.id.btnGetHistory);
         printHistory = (TextView) view.findViewById(R.id.printHistory);

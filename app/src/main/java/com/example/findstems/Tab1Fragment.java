@@ -43,13 +43,13 @@ public class Tab1Fragment extends Fragment {
 
                StringBuilder sb = new StringBuilder();
                for (int i = 0 ; i < allWords.length ; i++) {
-                   String curr = allWords[i];
+                   String curr = allWords[i].toUpperCase();
 
                    //get stems of word
                    //word does not include any non-alphabetical characters
                    String[] stems = Word.getStems(curr.replaceAll("[^A-Za-z]+", "")).toArray(new String[0]);
 
-                   sb.append(allWords[i] + ": ");
+                   sb.append(curr + ": ");
 
                    for (int j = 0 ; j < stems.length - 1 ; j++) {
                        sb.append(stems[j] + ", ");
@@ -65,5 +65,4 @@ public class Tab1Fragment extends Fragment {
 
         return view;
     }
-
 }
