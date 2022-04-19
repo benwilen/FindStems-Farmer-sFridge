@@ -39,6 +39,7 @@ public class Tab1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                //want to return list of all stems generated
                 List<String> stemsToBeSent = new ArrayList<>();
 
                 //get text from input
@@ -48,7 +49,9 @@ public class Tab1Fragment extends Fragment {
                 //convert string to list of all words entered
                String[] allWords = input.split(" ");
 
+               //need StringBuilder because TextView will be set to one continuous string
                StringBuilder sb = new StringBuilder();
+
                for (int i = 0 ; i < allWords.length ; i++) {
                    String curr = allWords[i].toUpperCase();
 
@@ -58,6 +61,7 @@ public class Tab1Fragment extends Fragment {
 
                    sb.append(curr + ": ");
 
+                   //add all stems to List to be sent
                    for (int j = 0 ; j < stems.length - 1 ; j++) {
                        sb.append(stems[j] + ", ");
                        stemsToBeSent.add(stems[j]);
@@ -68,6 +72,7 @@ public class Tab1Fragment extends Fragment {
                    sb.append("\n");
                 }
 
+               //set text on screen to original words and their stems
                printStems.setText(sb.toString());
 
                //send stems to fragment 2

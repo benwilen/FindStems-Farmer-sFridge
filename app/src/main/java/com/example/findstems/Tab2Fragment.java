@@ -35,6 +35,7 @@ public class Tab2Fragment extends Fragment {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //clear history and screen of past searches
                 history.clear();
                 printHistory.setText("");
             }
@@ -47,6 +48,7 @@ public class Tab2Fragment extends Fragment {
                 //get all mappings
                 Set<Map.Entry<String, Integer>> mappings = history.entrySet();
 
+                //iterate through each Entry to get the stem and its frequency of searches
                 StringBuilder sb = new StringBuilder();
                 for (Map.Entry<String, Integer> pair : mappings) {
                     sb.append(pair.getKey() + ": ");
@@ -54,6 +56,7 @@ public class Tab2Fragment extends Fragment {
                     sb.append("\n");
                 }
 
+                //set text on screen to StringBuilder
                 printHistory.setText(sb.toString());
             }
         });
@@ -64,9 +67,13 @@ public class Tab2Fragment extends Fragment {
     public void updateHistory(List<String> data) {
         for (int i = 0 ; i < data.size() ; i++) {
             String curr = data.get(i);
+
+            //implement its frequency by 1 if already in Map
             if (history.containsKey(curr)) {
                 history.put(curr, history.get(curr) + 1);
             }
+
+            //else modify the Map to include it
             else {
                 history.put(curr, 1);
             }

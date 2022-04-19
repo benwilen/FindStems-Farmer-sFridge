@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.findstems.*;
 import java.util.*;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements Tab1Fragment.Frag
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
 
+        //initialize each fragment and add it to PageAdapter
         fragment1 = new Tab1Fragment();
         fragment2 = new Tab2Fragment();
 
@@ -56,8 +58,10 @@ public class MainActivity extends AppCompatActivity implements Tab1Fragment.Frag
         viewPager.setAdapter(adapter);
     }
 
+    //fragment communication
     @Override
     public void onInput1Sent(List<String> data) {
+        //if fragment 1 sends over list of stems, call updateHistory in fragment 2
         fragment2.updateHistory(data);
     }
 
