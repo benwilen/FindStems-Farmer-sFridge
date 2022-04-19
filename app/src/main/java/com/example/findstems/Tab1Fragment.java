@@ -57,19 +57,24 @@ public class Tab1Fragment extends Fragment {
 
                    //get stems of word
                    //word does not include any non-alphabetical characters
-                   String[] stems = Word.getStems(curr.replaceAll("[^A-Za-z]+", "")).toArray(new String[0]);
+                   String allLetters = curr.replaceAll("[^A-Za-z]+", "");
 
-                   sb.append(curr + ": ");
+                   //if empty string, don't include
+                   if (!allLetters.equals("")) {
+                       String[] stems = Word.getStems(allLetters).toArray(new String[0]);
 
-                   //add all stems to List to be sent
-                   for (int j = 0 ; j < stems.length - 1 ; j++) {
-                       sb.append(stems[j] + ", ");
-                       stemsToBeSent.add(stems[j]);
+                       sb.append(allLetters + ": ");
+
+                       //add all stems to List to be sent
+                       for (int j = 0; j < stems.length - 1; j++) {
+                           sb.append(stems[j] + ", ");
+                           stemsToBeSent.add(stems[j]);
+                       }
+                       sb.append(stems[stems.length - 1]);
+                       stemsToBeSent.add(stems[stems.length - 1]);
+
+                       sb.append("\n");
                    }
-                   sb.append(stems[stems.length - 1]);
-                   stemsToBeSent.add(stems[stems.length - 1]);
-
-                   sb.append("\n");
                 }
 
                //set text on screen to original words and their stems
