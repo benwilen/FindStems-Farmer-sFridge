@@ -32,9 +32,14 @@ Overview:
 
 Setup and Execution:
   1) Download and open Android Studio. 
+  
+  If using online Git repository:
   2) Open Android Studio, and go to File > New > Project from Version Control
   3) Select Git from dropdown menu
   4) Paste the link of this repository's URL, and the directory to clone it into (directory should be in AndroidStudioProjects). Click Clone.
+  
+  If using zip repository:
+  2)Select File > Open and locate where you have stored the zip file
   
   Execute on Virtual Emulator:
     1) Click on the green pick axe icon to build the function.
