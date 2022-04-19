@@ -9,32 +9,40 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.findstems.ui.main.SectionsPagerAdapter;
-import com.example.findstems.databinding.ActivityMainBinding;
+import com.example.findstems.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private static final String TAG = "MainActivity";
+
+    private SectionsPageAdapter mSectionsPageAdapter;
+
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate: Starting.");
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = binding.viewPager;
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = binding.tabs;
-        tabs.setupWithViewPager(viewPager);
+        //Set up the ViewPager with the sections adapter
+        mViewPager = (ViewPager) findViewById(R.id.view_pager);
+        setupViewPager(mViewPager);
 
-        //set text of tabs
-        tabs.getTabAt(0).setText("Enter Word");
-        tabs.getTabAt(1).setText("See Stem History");
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new Tab1Fragment(), "TAB1");
+        adapter.addFragment(new Tab2Fragment(), "TAB2");
     }
 }
